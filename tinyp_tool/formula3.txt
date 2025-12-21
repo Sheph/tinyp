@@ -1,0 +1,4 @@
+    ((var1 / -100.045))
+    + ("abc" * var1) + (var2 / var1)
+        + ("abc" * var1) + (var2 / var1)
+            + ("abc" * var1) + (var2 / var1)
