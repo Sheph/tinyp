@@ -3,6 +3,7 @@
 
 #include "TinyP/ExprVisitor.h"
 #include <iostream>
+#include <cstdint>
 
 namespace TinyP {
     class Expr

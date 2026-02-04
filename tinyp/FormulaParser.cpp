@@ -52,7 +52,8 @@ namespace TinyP {
             return lhs.err();
         }
 
-        while ((lookahead().type == Token::Op) && ((lookahead().value == "*") || (lookahead().value == "/"))) {
+        while (((lookahead().type == Token::Op) && (lookahead().value == "/")) ||
+               (lookahead().type == Token::Asterisk)) {
             auto op = lookahead().value;
             if (auto err = match(lookahead().type)) {
                 return err;

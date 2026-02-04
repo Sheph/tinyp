@@ -7,6 +7,8 @@ set(SOURCES
     FilterEval.cpp
     FormulaParser.cpp
     FormulaEval.cpp
+    SqlParser.cpp
+    SqlEval.cpp
 )
 
 add_library(tinyp STATIC ${SOURCES})

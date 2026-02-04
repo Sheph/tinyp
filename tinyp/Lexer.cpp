@@ -1,7 +1,7 @@
 #include "TinyP/Lexer.h"
 
 namespace TinyP {
-    const std::string Lexer::specialChars_ = "*+-/=()\"<>&| \t\r\n";
+    const std::string Lexer::specialChars_ = "*+-/=()\"<>&|, \t\r\n";
     const std::string Lexer::whiteChars_ = " \t\r\n";
 
     Lexer::Lexer(std::istream& is)
@@ -23,10 +23,11 @@ namespace TinyP {
         case '=':
         case '+':
         case '-':
-        case '*':
         case '&':
         case '|':
         case '/': token = Token(Token::Op, ch, lineNumber_, columnNumber_); break;
+        case '*': token = Token(Token::Asterisk, ch, lineNumber_, columnNumber_); break;
+        case ',': token = Token(Token::Comma, ch, lineNumber_, columnNumber_); break;
         case '(': token = Token(Token::LeftBr, ch, lineNumber_, columnNumber_); break;
         case ')': token = Token(Token::RightBr, ch, lineNumber_, columnNumber_); break;
         case '\"': token = getLiteral(); break;
@@ -275,6 +276,8 @@ std::ostream& operator<<(std::ostream& os, const TinyP::Token& t)
         case TinyP::Token::Op: os << "operator"; break;
         case TinyP::Token::LeftBr: os << "\"(\""; break;
         case TinyP::Token::RightBr: os << "\")\""; break;
+        case TinyP::Token::Comma: os << "\",\""; break;
+        case TinyP::Token::Asterisk: os << "\"*\""; break;
         case TinyP::Token::Eos: os << "end of string"; break;
         default: os << "?"; break;
         }
@@ -286,6 +289,8 @@ std::ostream& operator<<(std::ostream& os, const TinyP::Token& t)
         case TinyP::Token::Op: os << "operator(" << t.value << ")"; break;
         case TinyP::Token::LeftBr: os << "\"(\""; break;
         case TinyP::Token::RightBr: os << "\")\""; break;
+        case TinyP::Token::Comma: os << "\",\""; break;
+        case TinyP::Token::Asterisk: os << "\"*\""; break;
         case TinyP::Token::Eos: os << "end of string"; break;
         default: os << "?(" << t.value << ")"; break;
         }

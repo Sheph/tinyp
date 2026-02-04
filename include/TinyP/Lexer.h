@@ -15,6 +15,8 @@ namespace TinyP {
             Op,
             LeftBr,
             RightBr,
+            Comma,
+            Asterisk,
             Eos
         };
 
